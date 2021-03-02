@@ -5,7 +5,8 @@ import java.awt.image.BufferedImage;
 
 public class Entity {
   
-  protected int x,y,width,height;
+  protected double x,y;
+  protected int width,height;
   
   private BufferedImage sprite;
   
@@ -25,10 +26,10 @@ public class Entity {
   }
   
   public int getX() {
-    return this.x;
+    return (int)this.x;
   }
   public int getY() {
-    return this.y;
+    return (int)this.y;
   }
   public int getWidth() {
     return this.width;

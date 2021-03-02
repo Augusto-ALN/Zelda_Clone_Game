@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Entity {
   
   public boolean right,up,left,down;
-  public int speed = 4;
+  public double speed = 0.9;
 
   public Player(int x, int y, int width, int height, BufferedImage sprite) {
     super(x, y, width, height, sprite);
@@ -13,12 +13,12 @@ public class Player extends Entity {
   
   public void tick() {
     if(right)
-      x+=4;
+      x+=speed;
     else if(left)
-      x-=4;
+      x-=speed;
     if(up)
-      y-=4;
+      y-=speed;
     else if(down)
-      y+=4;
+      y+=speed;
   }
 }
