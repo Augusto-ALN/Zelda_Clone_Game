@@ -35,15 +35,17 @@ public class Game extends Canvas implements Runnable,KeyListener{
   public List<Entity> entities;
   public Spritesheet spritesheet;
   
+  private Player player;
+  
   public Game() {
+    addKeyListener(this);
     this.setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
     initFrame();
     //Inicializando objetos.
     image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     entities = new ArrayList<Entity>();
     spritesheet = new Spritesheet("/Spritesheet.png");
-    
-    Player player = new Player(0,0,16,16,spritesheet.getSprite(32,0,16,16));
+    player = new Player(0,0,16,16,spritesheet.getSprite(32,0,16,16));
     entities.add(player);
   }
   
@@ -133,17 +135,44 @@ public class Game extends Canvas implements Runnable,KeyListener{
   @Override
   public void keyTyped(KeyEvent e) {
     // TODO Auto-generated method stub
-    
   }
 
   @Override
   public void keyPressed(KeyEvent e) {
     // TODO Auto-generated method stub
+    if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
+        e.getKeyCode() == KeyEvent.VK_D) {
+      player.right = true;
+    }else if(e.getKeyCode() == KeyEvent.VK_LEFT||
+        e.getKeyCode() == KeyEvent.VK_A) {
+      player.left = true;
+    }
+    
+    if(e.getKeyCode() == KeyEvent.VK_UP ||
+        e.getKeyCode() == KeyEvent.VK_W) {
+      player.up = true;  
+    }else if (e.getKeyCode() == KeyEvent.VK_DOWN ||
+        e.getKeyCode() == KeyEvent.VK_S) {   
+      player.down = true;
+    }
   }
-
   @Override
   public void keyReleased(KeyEvent e) {
     // TODO Auto-generated method stub
+    if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
+        e.getKeyCode() == KeyEvent.VK_D) {
+      player.right = false;
+    }else if(e.getKeyCode() == KeyEvent.VK_LEFT||
+        e.getKeyCode() == KeyEvent.VK_A) {
+      player.left = false;
+    }
     
+    if(e.getKeyCode() == KeyEvent.VK_UP ||
+        e.getKeyCode() == KeyEvent.VK_W) {
+      player.up = false;  
+    }else if (e.getKeyCode() == KeyEvent.VK_DOWN ||
+        e.getKeyCode() == KeyEvent.VK_S) {   
+      player.down = false;
+    }
   }
 }
