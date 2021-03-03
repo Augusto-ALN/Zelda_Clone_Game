@@ -53,12 +53,7 @@ public class Player extends Entity {
       dir = right_dir;
       x+=speed;
     }
-    else if(left) {
-      moved = true;
-      dir = left_dir;
-      x-=speed;
-    }
-    if(up) {
+    else if(up) {
       moved = true;
       dir = up_dir;
       y-=speed;
@@ -67,6 +62,11 @@ public class Player extends Entity {
       moved = true;
       dir = down_dir;
       y+=speed;
+    }
+    else if(left) {
+      moved = true;
+      dir = left_dir;
+      x-=speed;
     }
     
     if(moved) {

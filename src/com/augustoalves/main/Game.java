@@ -43,10 +43,10 @@ public class Game extends Canvas implements Runnable,KeyListener{
     this.setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
     initFrame();
     //Inicializando objetos.
-    world = new World("/map01.png");
     image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     entities = new ArrayList<Entity>();
     spritesheet = new Spritesheet("/Spritesheet.png");
+    world = new World("/map01.png");
     player = new Player(0,0,16,16,spritesheet.getSprite(32,0,16,16));
     entities.add(player);
   }
@@ -93,10 +93,11 @@ public class Game extends Canvas implements Runnable,KeyListener{
       return;
     }
     Graphics g = image.getGraphics();
-    g.setColor(new Color (19, 19, 19));
+    g.setColor(new Color (0, 0, 0));
     g.fillRect(0, 0, WIDTH, HEIGHT);
     /*Renderização do Jogo*/
     /***/
+    world.render(g);
     for(int i = 0; i < entities.size(); i++){
       Entity e = entities.get(i);
       e.render(g);
@@ -138,6 +139,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
   }
 
   public void keyPressed(KeyEvent e) {
+    //Movement
     if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
         e.getKeyCode() == KeyEvent.VK_D) {
       player.right = true;
@@ -153,8 +155,10 @@ public class Game extends Canvas implements Runnable,KeyListener{
         e.getKeyCode() == KeyEvent.VK_S) {   
       player.down = true;
     }
+    //End of movement
   }
   public void keyReleased(KeyEvent e) {
+    //Movement
     if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
         e.getKeyCode() == KeyEvent.VK_D) {
       player.right = false;
@@ -170,5 +174,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
         e.getKeyCode() == KeyEvent.VK_S) {   
       player.down = false;
     }
+    //End of Movement
   }
 }
