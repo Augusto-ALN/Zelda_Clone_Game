@@ -3,9 +3,7 @@ package com.augustoalves.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -18,6 +16,7 @@ import javax.swing.JFrame;
 import com.augustoalves.entities.Entity;
 import com.augustoalves.entities.Player;
 import com.augustoalves.graphics.Spritesheet;
+import com.augustoalves.world.World;
 
 public class Game extends Canvas implements Runnable,KeyListener{
 
@@ -35,6 +34,8 @@ public class Game extends Canvas implements Runnable,KeyListener{
   public List<Entity> entities;
   public static Spritesheet spritesheet;
   
+  public static World world;
+  
   private Player player;
   
   public Game() {
@@ -42,6 +43,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
     this.setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
     initFrame();
     //Inicializando objetos.
+    world = new World("/map01.png");
     image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     entities = new ArrayList<Entity>();
     spritesheet = new Spritesheet("/Spritesheet.png");
@@ -132,14 +134,10 @@ public class Game extends Canvas implements Runnable,KeyListener{
     stop();
   }
 
-  @Override
   public void keyTyped(KeyEvent e) {
-    // TODO Auto-generated method stub
   }
 
-  @Override
   public void keyPressed(KeyEvent e) {
-    // TODO Auto-generated method stub
     if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
         e.getKeyCode() == KeyEvent.VK_D) {
       player.right = true;
@@ -156,9 +154,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
       player.down = true;
     }
   }
-  @Override
   public void keyReleased(KeyEvent e) {
-    // TODO Auto-generated method stub
     if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
         e.getKeyCode() == KeyEvent.VK_D) {
       player.right = false;
