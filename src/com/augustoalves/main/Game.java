@@ -174,6 +174,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
         e.getKeyCode() == KeyEvent.VK_S) {   
       player.down = false;
     }
-    //End of Movement
+    //End of movement
   }
 }

@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import com.augustoalves.main.Game;
 
-public class Player extends Entity {
+public class Player extends Entity{
   
   public boolean right,up,left,down;
   public int right_dir = 0,left_dir = 1,up_dir = 2,down_dir = 3;
@@ -48,26 +48,34 @@ public class Player extends Entity {
   
   public void tick() {
     moved = false;
-    if(right) {
-      moved = true;
-      dir = right_dir;
-      x+=speed;
+    
+    if(up && right || up && left || down && right || down && left) {
+      speed = 0.60;
+      
     }
-    else if(up) {
-      moved = true;
-      dir = up_dir;
-      y-=speed;
+    else {
+      speed = 0.9;
     }
-    else if(down) {
-      moved = true;
-      dir = down_dir;
-      y+=speed;
-    }
-    else if(left) {
-      moved = true;
-      dir = left_dir;
-      x-=speed;
-    }
+      if(right) {
+        moved = true;
+        dir = right_dir;
+        x+=speed;
+      }
+      else if(left) {
+        moved = true;
+        dir = left_dir;
+        x-=speed;
+      }
+      if(up) {
+        moved = true;
+        dir = up_dir;
+        y-=speed;
+      }
+      else if(down) {
+        moved = true;
+        dir = down_dir;
+        y+=speed;
+      }
     
     if(moved) {
       frames++;
